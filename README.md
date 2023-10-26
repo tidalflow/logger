@@ -1,6 +1,7 @@
-# @bedrockio/logger
+# @tidalflow/logger
 
-Structured logger that targets both the console and remote cloud formats. This includes:
+Structured logger that targets both the console and remote cloud formats. This
+includes:
 
 - Pretty formatting for the console.
 - Request logging middleware.
@@ -10,13 +11,13 @@ Structured logger that targets both the console and remote cloud formats. This i
 ## Install
 
 ```bash
-yarn install @bedrockio/logger
+npm install @tidalflow/logger
 ```
 
 ## Usage
 
 ```js
-const logger = require('@bedrockio/logger');
+const logger = require('@tidalflow/logger');
 logger.setupGoogleCloud({
   // Set up gcloud structured logging. Default true.
   logging: true,
@@ -25,14 +26,15 @@ logger.setupGoogleCloud({
 });
 ```
 
-This initialization code should be added as early as possible in your application.
+This initialization code should be added as early as possible in your
+application.
 
 ### Options
 
 Enable both logging and tracing and tell the tracing to ignore specific paths.
 
 ```js
-const logger = require('@bedrockio/logger');
+const logger = require('@tidalflow/logger');
 logger.setupGoogleCloud({
   tracing: {
     ignoreIncomingPaths: ['/'],
@@ -42,7 +44,8 @@ logger.setupGoogleCloud({
 
 ## Log Levels
 
-In development, setting `process.env.LOG_LEVEL` will set the log level which silences lower level output:
+In development, setting `process.env.LOG_LEVEL` will set the log level which
+silences lower level output:
 
 - debug
 - info
@@ -59,14 +62,17 @@ Sets the logger to use console output for development. This is the default.
 
 #### `logger.useGoogleCloud`
 
-Sets the logger to output structured logs in JSON format. Accepts an `options` object:
+Sets the logger to output structured logs in JSON format. Accepts an `options`
+object:
 
-- `getTracePayload` - This connects the logger to tracing, allowing you to batch logs by requests.
+- `getTracePayload` - This connects the logger to tracing, allowing you to batch
+  logs by requests.
 
 #### `logger.useGoogleCloudTracing`
 
-Enables batched Google Cloud tracing for Koa and Mongoose. This will allow discovery of slow operations in your
-application. The [Cloud Trace](https://cloud.google.com/trace) API must be enabled to use this.
+Enables batched Google Cloud tracing for Koa and Mongoose. This will allow
+discovery of slow operations in your application. The
+[Cloud Trace](https://cloud.google.com/trace) API must be enabled to use this.
 
 #### `logger.middleware`
 
@@ -74,7 +80,7 @@ Koa middleware that logs HTTP requests:
 
 ```js
 const Koa = require('koa');
-const logger = require('@bedrockio/logging');
+const logger = require('@tidalflow/logging');
 
 const app = new Koa();
 app.use(logger.middleware());
@@ -99,8 +105,9 @@ logger.info({
 });
 ```
 
-Passing an object into the console logger will output it as you would see in the `console`. When using the Google Cloud
-logger it will output a structured JSON payload that allows inspecting of the object in the
+Passing an object into the console logger will output it as you would see in the
+`console`. When using the Google Cloud logger it will output a structured JSON
+payload that allows inspecting of the object in the
 [logging console](https://console.cloud.google.com/logs).
 
 ### Multiple Arguments
@@ -110,8 +117,9 @@ logger.info('foo', 'bar');
 logger.info(obj1, obj2);
 ```
 
-Multiple arguments will be concatenated together in the console logger. The Google Cloud logger will present a truncated
-message and export complex objects to the JSON payload.
+Multiple arguments will be concatenated together in the console logger. The
+Google Cloud logger will present a truncated message and export complex objects
+to the JSON payload.
 
 ### String Formatting
 
@@ -119,5 +127,6 @@ message and export complex objects to the JSON payload.
 logger.info('%s -> %s', 'foo', 'bar'); // foo -> bar
 ```
 
-Basic printf style formatting is supported out of the box by the console logger, and the Google Cloud console will
-format basic tokens (`%s`, `%d`, and `%i`). Note that decimal precision formatting such as `"%.2d"` is not supported.
+Basic printf style formatting is supported out of the box by the console logger,
+and the Google Cloud console will format basic tokens (`%s`, `%d`, and `%i`).
+Note that decimal precision formatting such as `"%.2d"` is not supported.

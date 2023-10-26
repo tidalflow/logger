@@ -1,7 +1,7 @@
 {
-  "name": "@bedrockio/logger",
-  "version": "1.0.6",
-  "description": "Structured logger for Bedrock applications.",
+  "name": "@tidalflow/logger",
+  "version": "1.0.7",
+  "description": "Structured logger for Tidalflow.",
   "type": "module",
   "scripts": {
     "test": "jest",
@@ -15,18 +15,14 @@
   "types": "./types/index.d.ts",
   "contributors": [
     {
-      "name": "Kaare Larsen",
-      "email": "kaare@rekall.ai"
-    },
-    {
-      "name": "Andrew Plummer",
-      "email": "andrew@rekall.ai"
+      "name": "Coen Stevens",
+      "email": "coen@tidalflow.ai"
     }
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bedrockio/logger"
+    "url": "https://github.com/tidalflow/logger"
   },
   "dependencies": {
     "@google-cloud/opentelemetry-cloud-trace-exporter": "^2.1.0",
